@@ -8,6 +8,34 @@ struct VaultCardView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
+                // Category badge
+                HStack(spacing: 4) {
+                    Image(systemName: vault.category.icon)
+                        .font(.system(size: 12))
+                    Text(vault.category.rawValue)
+                        .font(.system(size: 12, weight: .medium))
+                }
+                .foregroundColor(vault.category.color)
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
+                .background(vault.category.color.opacity(0.2))
+                .cornerRadius(8)
+                
+                Spacer()
+                
+                // Unlocked fish indicator
+                if vault.unlockedFish.count > 1 {
+                    HStack(spacing: 2) {
+                        ForEach(vault.unlockedFish.prefix(3), id: \.self) { fish in
+                            Image(systemName: fish.systemImage)
+                                .font(.system(size: 12))
+                                .foregroundColor(fish.color)
+                        }
+                    }
+                }
+            }
+            
+            HStack {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(vault.name)
                         .font(.system(size: 20, weight: .bold, design: .rounded))
@@ -20,9 +48,29 @@ struct VaultCardView: View {
                 
                 Spacer()
                 
-                // Animated fish
-                FishAnimationView(speed: vault.fishSpeed)
-                    .frame(width: 40, height: 40)
+                // Current fish
+                if let currentFish = vault.unlockedFish.last {
+                    Image(systemName: currentFish.systemImage)
+                        .font(.system(size: 32))
+                        .foregroundColor(currentFish.color)
+                }
+            }
+            
+            // Tags
+            if !vault.tags.isEmpty {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 6) {
+                        ForEach(vault.tags.prefix(3), id: \.self) { tag in
+                            Text("#\(tag)")
+                                .font(.system(size: 11))
+                                .foregroundColor(AppColors.primaryAccent)
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 4)
+                                .background(AppColors.primaryAccent.opacity(0.1))
+                                .cornerRadius(8)
+                        }
+                    }
+                }
             }
             
             // Progress bar
@@ -48,19 +96,19 @@ struct VaultCardView: View {
             
             // Stats
             HStack {
-                Text("\(vault.progressPercentage)%")
-                    .font(.system(size: 16, weight: .semibold, design: .rounded))
-                    .foregroundColor(AppColors.primaryAccent)
+                HStack(spacing: 4) {
+                    Image(systemName: "flame.fill")
+                        .font(.system(size: 14))
+                    Text("\(vault.currentStreak) day streak")
+                        .font(.system(size: 14))
+                }
+                .foregroundColor(vault.currentStreak > 0 ? Color(hex: "FF6B35") : AppColors.textSecondary)
                 
                 Spacer()
                 
-                HStack(spacing: 4) {
-                    Image(systemName: "calendar")
-                        .font(.system(size: 12))
-                    Text(vault.createdAt, style: .date)
-                        .font(.system(size: 12))
-                }
-                .foregroundColor(AppColors.textSecondary)
+                Text("\(vault.progressPercentage)%")
+                    .font(.system(size: 16, weight: .semibold, design: .rounded))
+                    .foregroundColor(AppColors.primaryAccent)
             }
         }
         .padding(20)

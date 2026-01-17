@@ -1,9 +1,11 @@
-// Views/Detail/VaultDetailView.swift
 import SwiftUI
 
 struct VaultDetailView: View {
     @StateObject private var viewModel: VaultDetailViewModel
     @State private var showingAddEntry = false
+    
+    @State var showingStatistics = false
+    @State var showingAddMilestone = false
     
     init(vault: Vault) {
         _viewModel = StateObject(wrappedValue: VaultDetailViewModel(vault: vault))
@@ -61,6 +63,47 @@ struct VaultDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $showingAddEntry) {
             AddEntryView(vault: viewModel.vault, viewModel: viewModel)
+        }
+//        .toolbar {
+//            ToolbarItem(placement: .navigationBarTrailing) {
+//                Button(action: { showingStatistics = true }) {
+//                    Image(systemName: "chart.bar.fill")
+//                        .foregroundColor(AppColors.primaryAccent)
+//                }
+//            }
+//        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Menu {
+                    Button(action: { showingStatistics = true }) {
+                        Label("Statistics", systemImage: "chart.bar.fill")
+                    }
+                    
+                    Button(action: { showingAddMilestone = true }) {
+                        Label("Add Milestone", systemImage: "flag.fill")
+                    }
+                } label: {
+                    Image(systemName: "ellipsis.circle")
+                        .foregroundColor(AppColors.primaryAccent)
+                }
+            }
+        }
+        .sheet(isPresented: $showingStatistics) {
+            NavigationView {
+                StatisticsView(vault: viewModel.vault)
+            }
+        }
+        .sheet(isPresented: $viewModel.showCelebration) {
+            if let milestone = viewModel.celebrationMilestone {
+                CelebrationView(
+                    milestone: milestone,
+                    newFish: viewModel.celebrationFish,
+                    isPresented: $viewModel.showCelebration
+                )
+            }
+        }
+        .sheet(isPresented: $showingAddMilestone) {
+            AddMilestoneView(viewModel: viewModel)
         }
     }
 }

@@ -24,15 +24,48 @@ extension Color {
     }
 }
 
+//extension View {
+//    func cardStyle() -> some View {
+//        self
+//            .background(AppColors.cardBackground)
+//            .cornerRadius(12)
+//            .shadow(color: Color.black.opacity(0.3), radius: 8, x: 0, y: 4)
+//    }
+//    
+//    func springAnimation() -> some View {
+//        self.animation(.spring(response: 0.4, dampingFraction: 0.7), value: UUID())
+//    }
+//}
+
 extension View {
     func cardStyle() -> some View {
         self
             .background(AppColors.cardBackground)
-            .cornerRadius(12)
+            .cornerRadius(AppConstants.cornerRadius)
             .shadow(color: Color.black.opacity(0.3), radius: 8, x: 0, y: 4)
     }
     
     func springAnimation() -> some View {
         self.animation(.spring(response: 0.4, dampingFraction: 0.7), value: UUID())
+    }
+}
+
+// Custom Styles
+struct CustomTextFieldStyle: TextFieldStyle {
+    func _body(configuration: TextField<Self._Label>) -> some View {
+        configuration
+            .font(.system(size: 16))
+            .foregroundColor(AppColors.textPrimary)
+            .padding()
+            .background(AppColors.cardBackground)
+            .cornerRadius(12)
+    }
+}
+
+struct ScaleButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? 0.96 : 1.0)
+            .animation(.spring(response: 0.3, dampingFraction: 0.6), value: configuration.isPressed)
     }
 }

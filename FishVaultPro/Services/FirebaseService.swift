@@ -106,7 +106,10 @@ class FirebaseService: ObservableObject {
             "id": vault.id,
             "name": vault.name,
             "type": vault.type.rawValue,
-            "createdAt": vault.createdAt.timeIntervalSince1970
+            "createdAt": vault.createdAt.timeIntervalSince1970,
+            "category": vault.category.rawValue,
+            "tags": vault.tags,
+            "unlockedFish": vault.unlockedFish.map { $0.rawValue }
         ]
         
         if let goal = vault.goal {
@@ -117,10 +120,103 @@ class FirebaseService: ObservableObject {
             dict["unit"] = unit
         }
         
-        // Always save entries, even if empty
         dict["entries"] = vault.entries.map { entryToDict($0) }
+        dict["milestones"] = vault.milestones.map { milestoneToDict($0) }
         
         return dict
+    }
+
+    private func milestoneToDict(_ milestone: Milestone) -> [String: Any] {
+        var dict: [String: Any] = [
+            "id": milestone.id,
+            "title": milestone.title,
+            "targetValue": milestone.targetValue,
+            "isAchieved": milestone.isAchieved
+        ]
+        
+        if let achievedDate = milestone.achievedDate {
+            dict["achievedDate"] = achievedDate.timeIntervalSince1970
+        }
+        
+        if let reward = milestone.reward {
+            dict["reward"] = reward.rawValue
+        }
+        
+        return dict
+    }
+
+    private func dictToVault(_ dict: [String: Any]) -> Vault? {
+        guard let id = dict["id"] as? String,
+              let name = dict["name"] as? String,
+              let typeString = dict["type"] as? String,
+              let type = VaultType(rawValue: typeString),
+              let createdAtTimestamp = dict["createdAt"] as? Double else {
+            return nil
+        }
+        
+        let createdAt = Date(timeIntervalSince1970: createdAtTimestamp)
+        let goal = dict["goal"] as? Double
+        let unit = dict["unit"] as? String
+        
+        let categoryString = dict["category"] as? String ?? "other"
+        let category = VaultCategory(rawValue: categoryString) ?? .other
+        
+        let tags = dict["tags"] as? [String] ?? []
+        
+        let unlockedFishStrings = dict["unlockedFish"] as? [String] ?? ["basic"]
+        let unlockedFish = unlockedFishStrings.compactMap { FishType(rawValue: $0) }
+        
+        var entries: [VaultEntry] = []
+        if let entriesArray = dict["entries"] as? [[String: Any]] {
+            entries = entriesArray.compactMap { dictToEntry($0) }
+        }
+        
+        var milestones: [Milestone] = []
+        if let milestonesArray = dict["milestones"] as? [[String: Any]] {
+            milestones = milestonesArray.compactMap { dictToMilestone($0) }
+        }
+        
+        return Vault(
+            id: id,
+            name: name,
+            type: type,
+            createdAt: createdAt,
+            goal: goal,
+            unit: unit,
+            entries: entries,
+            category: category,
+            tags: tags,
+            milestones: milestones,
+            unlockedFish: unlockedFish.isEmpty ? [.basic] : unlockedFish
+        )
+    }
+
+    private func dictToMilestone(_ dict: [String: Any]) -> Milestone? {
+        guard let id = dict["id"] as? String,
+              let title = dict["title"] as? String,
+              let targetValue = dict["targetValue"] as? Double else {
+            return nil
+        }
+        
+        let isAchieved = dict["isAchieved"] as? Bool ?? false
+        
+        var achievedDate: Date?
+        if let timestamp = dict["achievedDate"] as? Double {
+            achievedDate = Date(timeIntervalSince1970: timestamp)
+        }
+        
+        var reward: FishType?
+        if let rewardString = dict["reward"] as? String {
+            reward = FishType(rawValue: rewardString)
+        }
+        
+        return Milestone(
+            title: title,
+            targetValue: targetValue,
+            isAchieved: isAchieved,
+            achievedDate: achievedDate,
+            reward: reward
+        )
     }
     
     private func entryToDict(_ entry: VaultEntry) -> [String: Any] {
@@ -136,37 +232,6 @@ class FirebaseService: ObservableObject {
         }
         
         return dict
-    }
-    
-    private func dictToVault(_ dict: [String: Any]) -> Vault? {
-        guard let id = dict["id"] as? String,
-              let name = dict["name"] as? String,
-              let typeString = dict["type"] as? String,
-              let type = VaultType(rawValue: typeString),
-              let createdAtTimestamp = dict["createdAt"] as? Double else {
-            print("⚠️ Missing required vault fields")
-            return nil
-        }
-        
-        let createdAt = Date(timeIntervalSince1970: createdAtTimestamp)
-        let goal = dict["goal"] as? Double
-        let unit = dict["unit"] as? String
-        
-        // Parse entries array, default to empty if not present
-        var entries: [VaultEntry] = []
-        if let entriesArray = dict["entries"] as? [[String: Any]] {
-            entries = entriesArray.compactMap { dictToEntry($0) }
-        }
-        
-        return Vault(
-            id: id,
-            name: name,
-            type: type,
-            createdAt: createdAt,
-            goal: goal,
-            unit: unit,
-            entries: entries
-        )
     }
     
     private func dictToEntry(_ dict: [String: Any]) -> VaultEntry? {
