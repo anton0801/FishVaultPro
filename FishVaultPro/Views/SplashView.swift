@@ -158,15 +158,15 @@ struct VaultApplicationView: View {
             SplashView()
             
         case .active:
-            NavigationLink(destination: VaultContentView()
-                .navigationBarBackButtonHidden(true), isActive: $activeState) {
-                EmptyView()
-            }
+//            NavigationLink(destination:                 .navigationBarBackButtonHidden(true), isActive: $activeState) {
+//                EmptyView()
+//            }
             if orchestrator.targetURL != nil {
-                Text("A")
-                    .onAppear {
-                        activeState = true
-                    }
+                VaultContentView()
+//                Text("A")
+//                    .onAppear {
+//                        activeState = true
+//                    }
             } else {
                 MainView()
             }

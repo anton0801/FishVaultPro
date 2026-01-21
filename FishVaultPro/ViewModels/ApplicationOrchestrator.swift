@@ -9,7 +9,11 @@ import AppsFlyerLib
 final class AppViewModel: ObservableObject {
     
     // MARK: - Published Properties
-    @Published private(set) var state: AppState = .idle
+    @Published private(set) var state: AppState = .idle {
+        didSet {
+            print("new state \(state)")
+        }
+    }
     @Published private(set) var targetURL: String?
     @Published var showPermissionPrompt: Bool = false
     
@@ -134,19 +138,21 @@ final class AppViewModel: ObservableObject {
     }
     
     private func performValidation() async {
-        state = .validating
-        
-        do {
-            let isValid = try await validationService.validate()
+        if targetURL == nil {
+            state = .validating
             
-            if isValid {
-                state = .validated
-                await continueFlow()
-            } else {
+            do {
+                let isValid = try await validationService.validate()
+                
+                if isValid {
+                    state = .validated
+                    await continueFlow()
+                } else {
+                    state = .inactive
+                }
+            } catch {
                 state = .inactive
             }
-        } catch {
-            state = .inactive
         }
     }
     
