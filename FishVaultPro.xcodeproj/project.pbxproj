@@ -390,7 +390,7 @@
 				CODE_SIGN_ENTITLEMENTS = FishVaultPro/FishVaultPro.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = K4CV2BU7AC;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FishVaultPro/Info.plist;
@@ -413,7 +413,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.3;
 				MARKETING_VERSION = 2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.proappsfish24.FishVaultPro;
+				PRODUCT_BUNDLE_IDENTIFIER = com.proappsfish.FishVaultPro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
@@ -434,7 +434,7 @@
 				CODE_SIGN_ENTITLEMENTS = FishVaultPro/FishVaultPro.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = K4CV2BU7AC;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FishVaultPro/Info.plist;
@@ -457,7 +457,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.3;
 				MARKETING_VERSION = 2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.proappsfish24.FishVaultPro;
+				PRODUCT_BUNDLE_IDENTIFIER = com.proappsfish.FishVaultPro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
@@ -475,7 +475,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = K4CV2BU7AC;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotifServiceApplicationExt/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotifServiceApplicationExt;
@@ -487,7 +487,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.proappsfish24.FishVaultPro.NotifServiceApplicationExt;
+				PRODUCT_BUNDLE_IDENTIFIER = com.proappsfish.FishVaultPro.NotifServiceApplicationExt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -506,7 +506,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = K4CV2BU7AC;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotifServiceApplicationExt/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotifServiceApplicationExt;
@@ -518,7 +518,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.proappsfish24.FishVaultPro.NotifServiceApplicationExt;
+				PRODUCT_BUNDLE_IDENTIFIER = com.proappsfish.FishVaultPro.NotifServiceApplicationExt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
