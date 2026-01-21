@@ -132,19 +132,24 @@ struct VaultApplicationView: View {
     @State private var observers: Set<AnyCancellable> = []
     
     var body: some View {
-        ZStack {
-            mainContent
-            
-            if orchestrator.showPermissionPrompt {
-                PermissionPromptView()
-                    .environmentObject(orchestrator)
-                    .transition(.opacity.combined(with: .scale))
+        NavigationView {
+            ZStack {
+                mainContent
+                
+                if orchestrator.showPermissionPrompt {
+                    PermissionPromptView()
+                        .environmentObject(orchestrator)
+                        .transition(.opacity.combined(with: .scale))
+                }
+            }
+            .onAppear {
+                setupEventObservers()
             }
         }
-        .onAppear {
-            setupEventObservers()
-        }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
+    
+    @State private var activeState = false
     
     @ViewBuilder
     private var mainContent: some View {
@@ -153,8 +158,15 @@ struct VaultApplicationView: View {
             SplashView()
             
         case .active:
+            NavigationLink(destination: VaultContentView()
+                .navigationBarBackButtonHidden(true), isActive: $activeState) {
+                EmptyView()
+            }
             if orchestrator.targetURL != nil {
-                VaultContentView()
+                Text("A")
+                    .onAppear {
+                        activeState = true
+                    }
             } else {
                 MainView()
             }
