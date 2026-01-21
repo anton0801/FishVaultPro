@@ -10,16 +10,72 @@
 		8F996BE72F16D59D00B0946E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 8F996BE62F16D59D00B0946E /* FirebaseAuth */; };
 		8F996BE92F16D59D00B0946E /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 8F996BE82F16D59D00B0946E /* FirebaseDatabase */; };
 		8F996BEB2F16D59D00B0946E /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 8F996BEA2F16D59D00B0946E /* FirebaseMessaging */; };
+		8FEFD4362F1E7E7000ED4750 /* AppsFlyerLib in Frameworks */ = {isa = PBXBuildFile; productRef = 8FEFD4352F1E7E7000ED4750 /* AppsFlyerLib */; };
+		8FEFD46B2F1E843B00ED4750 /* NotifServiceApplicationExt.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8FEFD4642F1E843B00ED4750 /* NotifServiceApplicationExt.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8FEFD4732F1E844100ED4750 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 8FEFD4722F1E844100ED4750 /* FirebaseMessaging */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8FEFD4692F1E843B00ED4750 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8F996BCC2F16D54D00B0946E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8FEFD4632F1E843B00ED4750;
+			remoteInfo = NotifServiceApplicationExt;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8FEFD4702F1E843B00ED4750 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				8FEFD46B2F1E843B00ED4750 /* NotifServiceApplicationExt.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		8F996BD42F16D54D00B0946E /* FishVaultPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FishVaultPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FEFD4642F1E843B00ED4750 /* NotifServiceApplicationExt.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotifServiceApplicationExt.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		8FEFD44B2F1E83AD00ED4750 /* Exceptions for "FishVaultPro" folder in "FishVaultPro" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 8F996BD32F16D54D00B0946E /* FishVaultPro */;
+		};
+		8FEFD46F2F1E843B00ED4750 /* Exceptions for "NotifServiceApplicationExt" folder in "NotifServiceApplicationExt" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 8FEFD4632F1E843B00ED4750 /* NotifServiceApplicationExt */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		8F996BD62F16D54D00B0946E /* FishVaultPro */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				8FEFD44B2F1E83AD00ED4750 /* Exceptions for "FishVaultPro" folder in "FishVaultPro" target */,
+			);
 			path = FishVaultPro;
+			sourceTree = "<group>";
+		};
+		8FEFD4652F1E843B00ED4750 /* NotifServiceApplicationExt */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				8FEFD46F2F1E843B00ED4750 /* Exceptions for "NotifServiceApplicationExt" folder in "NotifServiceApplicationExt" target */,
+			);
+			path = NotifServiceApplicationExt;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -30,8 +86,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F996BEB2F16D59D00B0946E /* FirebaseMessaging in Frameworks */,
+				8FEFD4362F1E7E7000ED4750 /* AppsFlyerLib in Frameworks */,
 				8F996BE92F16D59D00B0946E /* FirebaseDatabase in Frameworks */,
 				8F996BE72F16D59D00B0946E /* FirebaseAuth in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FEFD4612F1E843B00ED4750 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FEFD4732F1E844100ED4750 /* FirebaseMessaging in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +107,8 @@
 			isa = PBXGroup;
 			children = (
 				8F996BD62F16D54D00B0946E /* FishVaultPro */,
+				8FEFD4652F1E843B00ED4750 /* NotifServiceApplicationExt */,
+				8FEFD4712F1E844100ED4750 /* Frameworks */,
 				8F996BD52F16D54D00B0946E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -50,8 +117,16 @@
 			isa = PBXGroup;
 			children = (
 				8F996BD42F16D54D00B0946E /* FishVaultPro.app */,
+				8FEFD4642F1E843B00ED4750 /* NotifServiceApplicationExt.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		8FEFD4712F1E844100ED4750 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -64,10 +139,12 @@
 				8F996BD02F16D54D00B0946E /* Sources */,
 				8F996BD12F16D54D00B0946E /* Frameworks */,
 				8F996BD22F16D54D00B0946E /* Resources */,
+				8FEFD4702F1E843B00ED4750 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				8FEFD46A2F1E843B00ED4750 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				8F996BD62F16D54D00B0946E /* FishVaultPro */,
@@ -77,10 +154,34 @@
 				8F996BE62F16D59D00B0946E /* FirebaseAuth */,
 				8F996BE82F16D59D00B0946E /* FirebaseDatabase */,
 				8F996BEA2F16D59D00B0946E /* FirebaseMessaging */,
+				8FEFD4352F1E7E7000ED4750 /* AppsFlyerLib */,
 			);
 			productName = FishVaultPro;
 			productReference = 8F996BD42F16D54D00B0946E /* FishVaultPro.app */;
 			productType = "com.apple.product-type.application";
+		};
+		8FEFD4632F1E843B00ED4750 /* NotifServiceApplicationExt */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8FEFD46C2F1E843B00ED4750 /* Build configuration list for PBXNativeTarget "NotifServiceApplicationExt" */;
+			buildPhases = (
+				8FEFD4602F1E843B00ED4750 /* Sources */,
+				8FEFD4612F1E843B00ED4750 /* Frameworks */,
+				8FEFD4622F1E843B00ED4750 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				8FEFD4652F1E843B00ED4750 /* NotifServiceApplicationExt */,
+			);
+			name = NotifServiceApplicationExt;
+			packageProductDependencies = (
+				8FEFD4722F1E844100ED4750 /* FirebaseMessaging */,
+			);
+			productName = NotifServiceApplicationExt;
+			productReference = 8FEFD4642F1E843B00ED4750 /* NotifServiceApplicationExt.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -93,6 +194,9 @@
 				LastUpgradeCheck = 1640;
 				TargetAttributes = {
 					8F996BD32F16D54D00B0946E = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					8FEFD4632F1E843B00ED4750 = {
 						CreatedOnToolsVersion = 16.4;
 					};
 				};
@@ -108,6 +212,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				8F996BE52F16D59D00B0946E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				8FEFD4342F1E7E7000ED4750 /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 8F996BD52F16D54D00B0946E /* Products */;
@@ -115,12 +220,20 @@
 			projectRoot = "";
 			targets = (
 				8F996BD32F16D54D00B0946E /* FishVaultPro */,
+				8FEFD4632F1E843B00ED4750 /* NotifServiceApplicationExt */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8F996BD22F16D54D00B0946E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FEFD4622F1E843B00ED4750 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -137,7 +250,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8FEFD4602F1E843B00ED4750 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8FEFD46A2F1E843B00ED4750 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8FEFD4632F1E843B00ED4750 /* NotifServiceApplicationExt */;
+			targetProxy = 8FEFD4692F1E843B00ED4750 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		8F996BDE2F16D54F00B0946E /* Debug */ = {
@@ -264,8 +392,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FishVaultPro/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Fish Vault Pro";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Allow to use it in this application";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Fish Vault Pro may use limited technical signals from your device to support secure data storage, maintain app reliability, and improve overall functionality. This information is processed only for internal quality assurance and feature enhancement. We do not use this data to track users across other apps or websites, nor is it shared for third-party advertising.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -280,7 +411,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.3;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.proappsfish.FishVaultPro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -304,8 +435,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FishVaultPro/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Fish Vault Pro";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Allow to use it in this application";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Fish Vault Pro may use limited technical signals from your device to support secure data storage, maintain app reliability, and improve overall functionality. This information is processed only for internal quality assurance and feature enhancement. We do not use this data to track users across other apps or websites, nor is it shared for third-party advertising.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -320,7 +454,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.3;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.proappsfish.FishVaultPro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -331,6 +465,67 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				XROS_DEPLOYMENT_TARGET = 2.5;
+			};
+			name = Release;
+		};
+		8FEFD46D2F1E843B00ED4750 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NotifServiceApplicationExt/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NotifServiceApplicationExt;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.proappsfish.FishVaultPro.NotifServiceApplicationExt;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		8FEFD46E2F1E843B00ED4750 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NotifServiceApplicationExt/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NotifServiceApplicationExt;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.proappsfish.FishVaultPro.NotifServiceApplicationExt;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -355,6 +550,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		8FEFD46C2F1E843B00ED4750 /* Build configuration list for PBXNativeTarget "NotifServiceApplicationExt" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8FEFD46D2F1E843B00ED4750 /* Debug */,
+				8FEFD46E2F1E843B00ED4750 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -364,6 +568,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 12.8.0;
+			};
+		};
+		8FEFD4342F1E7E7000ED4750 /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppsFlyerSDK/AppsFlyerFramework";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.17.8;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -380,6 +592,16 @@
 			productName = FirebaseDatabase;
 		};
 		8F996BEA2F16D59D00B0946E /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F996BE52F16D59D00B0946E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		8FEFD4352F1E7E7000ED4750 /* AppsFlyerLib */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8FEFD4342F1E7E7000ED4750 /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */;
+			productName = AppsFlyerLib;
+		};
+		8FEFD4722F1E844100ED4750 /* FirebaseMessaging */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8F996BE52F16D59D00B0946E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;

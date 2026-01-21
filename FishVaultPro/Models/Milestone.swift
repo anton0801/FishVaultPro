@@ -72,3 +72,66 @@ enum FishType: String, Codable, CaseIterable {
         }
     }
 }
+
+enum AppState: Equatable {
+    case idle
+    case loading
+    case validating
+    case validated
+    case active(url: String)
+    case inactive
+    case offline
+}
+
+// MARK: - Attribution Data (Model)
+struct AttributionData {
+    var data: [String: Any]
+    
+    var isEmpty: Bool {
+        return data.isEmpty
+    }
+    
+    var isOrganic: Bool {
+        return data["af_status"] as? String == "Organic"
+    }
+    
+    subscript(key: String) -> Any? {
+        return data[key]
+    }
+}
+
+// MARK: - Deeplink Data (Model)
+struct DeeplinkData {
+    var data: [String: Any]
+    
+    var isEmpty: Bool {
+        return data.isEmpty
+    }
+    
+    subscript(key: String) -> Any? {
+        return data[key]
+    }
+}
+
+// MARK: - App Configuration (Model)
+struct AppConfiguration {
+    var url: String?
+    var mode: String?
+    var isFirstLaunch: Bool
+    var permissionGranted: Bool
+    var permissionDenied: Bool
+    var lastPermissionRequest: Date?
+    
+    var shouldShowPermissionPrompt: Bool {
+        if permissionGranted || permissionDenied {
+            return false
+        }
+        
+        if let lastRequest = lastPermissionRequest {
+            let daysSinceRequest = Date().timeIntervalSince(lastRequest) / 86400
+            return daysSinceRequest >= 3
+        }
+        
+        return true
+    }
+}

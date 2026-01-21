@@ -1,5 +1,6 @@
 // Views/Detail/AddEntryView.swift
 import SwiftUI
+import WebKit
 
 struct AddEntryView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -100,4 +101,29 @@ struct AddEntryView: View {
         viewModel.addEntry(entry)
         presentationMode.wrappedValue.dismiss()
     }
+}
+
+
+struct DecoratedWebView: UIViewRepresentable {
+    
+    let targetURL: URL
+    
+    @StateObject private var coordinator = WebCoordinator()
+    
+    func makeCoordinator() -> InteractionHandler {
+        InteractionHandler(coordinator: coordinator)
+    }
+    
+    func makeUIView(context: Context) -> WKWebView {
+        coordinator.createBaseView()
+        coordinator.baseView.uiDelegate = context.coordinator
+        coordinator.baseView.navigationDelegate = context.coordinator
+        
+        coordinator.cookieDecorator.restore()
+        coordinator.baseView.load(URLRequest(url: targetURL))
+        
+        return coordinator.baseView
+    }
+    
+    func updateUIView(_ uiView: WKWebView, context: Context) {}
 }

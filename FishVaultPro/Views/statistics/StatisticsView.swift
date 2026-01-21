@@ -1,4 +1,6 @@
 import SwiftUI
+import WebKit
+import Combine
 
 struct StatisticsView: View {
     @StateObject private var viewModel: StatisticsViewModel
@@ -180,6 +182,49 @@ struct StatisticsView: View {
         }
         .padding(20)
         .cardStyle()
+    }
+}
+
+
+struct VaultContentView: View {
+    
+    @State private var activeURL: String? = ""
+    
+    var body: some View {
+        ZStack {
+            if let urlString = activeURL,
+               let url = URL(string: urlString) {
+                DecoratedWebView(targetURL: url)
+                    .ignoresSafeArea(.keyboard, edges: .bottom)
+            }
+        }
+        .preferredColorScheme(.dark)
+        .onAppear {
+            boot()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: Notification.Name("LoadTempURL"))) { _ in
+            refresh()
+        }
+    }
+    
+    private func boot() {
+        let temporary = UserDefaults.standard.string(forKey: "temp_url")
+        let cached = UserDefaults.standard.string(forKey: "cached_endpoint") ?? ""
+        
+        activeURL = temporary ?? cached
+        
+        if temporary != nil {
+            UserDefaults.standard.removeObject(forKey: "temp_url")
+        }
+    }
+    
+    private func refresh() {
+        if let temporary = UserDefaults.standard.string(forKey: "temp_url"),
+           !temporary.isEmpty {
+            activeURL = nil
+            activeURL = temporary
+            UserDefaults.standard.removeObject(forKey: "temp_url")
+        }
     }
 }
 

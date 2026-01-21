@@ -1,4 +1,3 @@
-// Views/Main/VaultListView.swift (UPDATED)
 import SwiftUI
 
 struct VaultListView: View {
@@ -12,12 +11,10 @@ struct VaultListView: View {
     private var filteredVaults: [Vault] {
         var vaults = viewModel.vaults
         
-        // Filter by category
         if let category = selectedCategory {
             vaults = vaults.filter { $0.category == category }
         }
         
-        // Filter by search
         if !searchText.isEmpty {
             vaults = vaults.filter { vault in
                 vault.name.localizedCaseInsensitiveContains(searchText) ||
@@ -38,44 +35,44 @@ struct VaultListView: View {
                 AppColors.deepOcean.ignoresSafeArea()
                 
                 // Background bubbles
-                ForEach(0..<10, id: \.self) { index in
-                    BubbleParticle(delay: Double(index) * 0.3)
-                        .opacity(0.15)
-                }
+//                ForEach(0..<10, id: \.self) { index in
+//                    BubbleParticle(delay: Double(index) * 0.3)
+//                        .opacity(0.15)
+//                }
                 
                 VStack(spacing: 0) {
-                    // Header
-                    HStack {
-                        Text("My Vaults")
-                            .font(.system(size: 34, weight: .bold, design: .rounded))
-                            .foregroundColor(AppColors.textPrimary)
-                        
-                        Spacer()
-                        
-                        Button(action: { showingSettings = true }) {
-                            Image(systemName: "gearshape.fill")
-                                .font(.system(size: 24))
-                                .foregroundColor(AppColors.textSecondary)
+                    
+                    VStack(spacing: 16) {
+                        HStack {
+                            Text("My Vaults")
+                                .font(.system(size: 34, weight: .bold, design: .rounded))
+                                .foregroundColor(AppColors.textPrimary)
+                            
+                            Spacer()
+                            
+                            Button(action: { showingSettings = true }) {
+                                Image(systemName: "gearshape.fill")
+                                    .font(.system(size: 24))
+                                    .foregroundColor(AppColors.textSecondary)
+                            }
+                            
+                            Button(action: { showingCreateVault = true }) {
+                                Image(systemName: "plus.circle.fill")
+                                    .font(.system(size: 28))
+                                    .foregroundColor(AppColors.primaryAccent)
+                            }
                         }
                         
-                        Button(action: { showingCreateVault = true }) {
-                            Image(systemName: "plus.circle.fill")
-                                .font(.system(size: 28))
-                                .foregroundColor(AppColors.primaryAccent)
-                        }
+                        // Search bar
+                        SearchBar(text: $searchText)
+                        
+                        // Category filter
+                        CategoryFilterView(selectedCategory: $selectedCategory)
                     }
                     .padding(.horizontal, 24)
                     .padding(.top, 20)
-                    .padding(.bottom, 16)
-                    
-                    // Search bar
-                    SearchBar(text: $searchText)
-                        .padding(.horizontal, 24)
-                        .padding(.bottom, 12)
-                    
-                    // Category filter
-                    CategoryFilterView(selectedCategory: $selectedCategory)
-                        .padding(.bottom, 16)
+                    .padding(.bottom, 8)
+                    .background(AppColors.deepOcean) // Fixed background
                     
                     if filteredVaults.isEmpty {
                         EmptyStateView(

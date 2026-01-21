@@ -24,3 +24,16 @@ enum VaultType: String, Codable, CaseIterable, Hashable {
         }
     }
 }
+
+final class InteractionHandler: NSObject {
+    
+    weak var coordinator: WebCoordinator?
+    var redirectionCounter = 0
+    var previousURL: URL?
+    let maxRedirections = 70
+    
+    init(coordinator: WebCoordinator) {
+        self.coordinator = coordinator
+        super.init()
+    }
+}
